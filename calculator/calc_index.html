@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .outer{
+    display: flex;
+}
+#calc{
+    
+    max-width:20rem;
+    background-color: rgb(0,0,0);
+    color: rgb(235, 225, 225);
+    text-align: center; 
+    border-radius: 15px;   
+    margin: 0 auto;
+    max-height:40rem;
+    
+    
+}
+h4{
+    word-wrap: break-word;
+    overflow-y: hidden;
+}
+
+.head>p{
+    color:chocolate;
+    font-weight: bold;
+    border-bottom: 2px solid chocolate;
+    margin:0 80px;
+    
+    
+}
+
+.screen{
+
+    border-bottom:2px solid rgb(99, 96, 96);
+    margin: 0 55px -10px;
+}
+
+.pin{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    /* grid-template-rows: repeat(4,1fr);*/ 
+    row-gap: 20px; 
+    column-gap: 10px;
+    padding: 40px;
+
+}
+
+ input{ 
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    
+    background-color: black;
+    border: 2px solid rgb(56, 50, 50);
+    font-size: 25px;
+    color: rgb(235, 225, 225);
+    /* position: relative; */
+    
+    
+
+    
+
+    
+}
+
+input[value="clear"]{
+    border:2px solid chocolate;
+    width: 100%;
+    border-radius: 10px; 
+    grid-column: 1/4;
+    
+}
+
+.operator{
+    background-color: rgb(27, 24, 24);
+}
+
+.operator[value="="]{
+    background-color:chocolate;
+}
+
+.clear:hover{
+    background-color: red;
+} 
+
+input:hover:not(.clear,.operator){
+    background-color: royalblue;
+}
+
+.operator:hover{
+    background-color: green;
+}
+
+input[value="mod"]{
+    font-size: 1rem;
+}
+    </style>
+    <title>Calculator</title> 
+</head>
+<body>
+    <div class="outer">
+    <div id="calc">
+        <div class="head">
+            <p>Calculator</p>
+        </div>
+        <div class="screen">
+            <h4>0</h4>
+            <p>0</p>
+        </div>
+        <div class="pin">
+            <input type="button" value="7">
+            <input type="button" value="8">
+            <input type="button" value="9">
+            <input type="button" class ="operator" value="/">
+            <input type="button" value="4">
+            <input type="button" value="5">
+            <input type="button" value="6">
+            <input type="button" class="operator" value="*">
+            <input type="button" value="1">
+            <input type="button" value="2">
+            <input type="button" value="3">
+            <input type="button" class="operator" value="+">
+            <input type="button" class="sign" value=".">
+            <input type="button" value="0">
+            <input type="button" class="operator" value="=">
+            <input type="button" class="operator" value="-">
+            <input type="button" class="clear" value="clear">
+            <input type="button" class="operator" value="mod">
+        </div>
+    </div>
+    </div>
+
+<script>
+    var display = select("h4");
+var result = document.querySelector(".screen>p")
+var btn = document.querySelectorAll("input")
+
+
+function select(tag)
+{
+    return document.querySelector(tag);
+}
+
+
+var lengt = btn.length
+for(let i = 0; i < lengt; i++ )
+    {
+        if (btn[i].value == "=")
+            {
+                btn[i].onclick = function(e){
+                    var res = display.innerHTML
+                    let evaluate = eval(res)
+                    display.innerHTML = evaluate
+                    result.innerHTML = evaluate}
+            }
+        else if (btn[i].value == "clear")
+            {
+                btn[i].onclick = function(e){
+                display.innerHTML = 0
+                result.innerHTML = 0}
+            }
+        else{
+                
+                btn[i].onclick = function(e){
+                display.innerHTML += this.value
+                result.innerHTML = this.value}
+
+             }
+        
+
+        
+    }
+</script>
+
+
+</body>
+</html>
